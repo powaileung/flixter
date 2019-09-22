@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   resources :courses, only: [:index, :show]
   namespace :instructor do
-    resources :courses, only: [:new, :create, :show]
+    resources :courses, only: [:new, :create, :show] do
+      # we hook the new and create actions by "nesting" the sections underneath the course resource
+      resources :sections, only: [:new, :create]
+    end
   end
 end
