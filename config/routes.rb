@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # hook up the routes so the localhost:3030 takes us to the landing page
   root 'static_pages#index'
-  resources :courses, only: [:index, :show]
+  # we hook the enrollments and create actions by "nesting" it under the course resource
+  resources :courses, only: [:index, :show] do
+    resources :enrollments, only: :create
+  end
   resources :lessons, only: [:show]
   namespace :instructor do
     resources :sections, only: [] do
