@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # hook up the routes so the localhost:3030 takes us to the landing page
+  resource :dashboard, only: [:show]
   root 'static_pages#index'
   # we hook the enrollments and create actions by "nesting" it under the course resource
   resources :courses, only: [:index, :show] do
