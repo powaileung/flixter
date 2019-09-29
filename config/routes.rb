@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # hook up the routes so the localhost:3030 takes us to the landing page
   resource :dashboard, only: [:show]
   root 'static_pages#index'
+  get 'privacy', to: 'static_pages#privacy'
+  get 'team', to: 'static_pages#team'
+  get 'careers', to: 'static_pages#careers'
   # we hook the enrollments and create actions by "nesting" it under the course resource
   resources :courses, only: [:index, :show] do
     resources :enrollments, only: :create
